@@ -1,4 +1,4 @@
-const Home = () => {
+const Home = ({ isAuth }) => {
   const image =
     'https://media.istockphoto.com/vectors/cartoon-rock-band-vector-vector-id621592618';
   return (
