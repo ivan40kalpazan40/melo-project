@@ -1,14 +1,21 @@
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div class='ui inverted menu'>
       <div class='header item'>: melo :::</div>
-      <a class='item'>Home</a>
+      <Link to='/' class='item'>
+        Home
+      </Link>
       <a class='item'>Jobs</a>
       <a class='item'>Locations</a>
 
       <div class='right menu'>
-        <a class='item'>Login</a>
-        <a class='item'>Register</a>
+        <Link to='/user/login' class='item'>
+          Login
+        </Link>
+        <Link to='/user/register' class='item'>
+          Register
+        </Link>
         <a class='item'>Logout</a>
       </div>
     </div>
