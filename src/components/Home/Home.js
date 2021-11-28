@@ -1,4 +1,7 @@
-const Home = ({ isAuth }) => {
+import { useContext } from 'react';
+import { AuthContext } from '../../context/Auth/AuthContext';
+const Home = () => {
+  const [isAuth, setIsAuth] = useContext(AuthContext);
   const image =
     'https://media.istockphoto.com/vectors/cartoon-rock-band-vector-vector-id621592618';
   return (
@@ -8,6 +11,7 @@ const Home = ({ isAuth }) => {
         <div class='sub header'>
           The social network to keep track of your favorite artists and music
         </div>
+        <p>{isAuth ? 'Authenticated' : 'Not Autenticated'}</p>
       </h1>
       <div class='ui segment'>
         {/* <div class='ui left dividing rail'>

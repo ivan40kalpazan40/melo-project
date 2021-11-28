@@ -1,4 +1,8 @@
 const Login = () => {
+  const formSubmitRegister = () => {
+
+  };
+  
   return (
     <div className='ui container'>
       <div className='ui error message'>
@@ -8,7 +12,7 @@ const Login = () => {
         </p>
       </div>
       <h1>Login </h1>
-      <form className='ui form'>
+      <form className='ui form' onSubmit={formSubmitRegister}>
         <div className='field'>
           <label>Email</label>
           <input type='email' name='email' placeholder='Email' />
