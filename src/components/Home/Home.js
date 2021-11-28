@@ -109,6 +109,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <button className='ui button primary' onClick={() => setIsAuth(!isAuth)}>
+        Click
+      </button>
     </div>
   );
 };
