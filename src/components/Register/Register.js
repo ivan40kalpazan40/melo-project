@@ -2,9 +2,11 @@ import * as authServices from '../../services/authServices';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/Auth/AuthContext';
+import { AlertContext } from '../../context/Alert/AlertContext';
 
 const Register = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
+  const [alert, setAlert] = useContext(AlertContext);
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -37,24 +39,27 @@ const Register = () => {
         history.push('/');
       })
       .catch((error) => {
-        setTimeout(() => {}, 3000);
         setIsAuth(false);
-        setData({
-          email: '',
-          password: '',
-          confirmPassword: '',
-        });
-        history.push('/user/register');
+        setAlert(`ERR:: ${error.message}`);
+        e.target.reset();
+        setTimeout(() => {
+          setAlert('');
+        }, 3000);
+        //history.push('/user/register');
         console.log(error.message);
       });
   };
 
   return (
     <div className='ui container'>
-      <div className='ui error message'>
-        <div className='header'>Action Forbidden</div>
-        <p>Action Forbidden</p>
-      </div>
+      {alert ? (
+        <div className='ui error message'>
+          <div className='header'>Action Forbidden</div>
+          <p>{alert}</p>
+        </div>
+      ) : (
+        ''
+      )}
 
       <h1>Register </h1>
       <form className='ui form' onSubmit={submitRegisterForm}>
