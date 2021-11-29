@@ -23,36 +23,36 @@ const Home = () => {
         <h2>More Here soon....</h2>
       ) : (
         <div className='ui container '>
-          <h1 class='ui center aligned header'>
+          <h1 className='ui center aligned header'>
             melo
-            <div class='sub header'>
+            <div className='sub header'>
               The social network to keep track of your favorite artists and
               music
             </div>
             <p>{isAuth ? 'Authenticated' : 'Not Autenticated'}</p>
           </h1>
-          <div class='ui segment'>
-            <div class='ui three column  stackable padded grid'>
-              <div class='ui link cards'>
+          <div className='ui segment'>
+            <div className='ui three column  stackable padded grid'>
+              <div className='ui link cards'>
                 {data.map((artist) => {
                   return (
-                    <div class='card column'>
-                      <div class='image'>
+                    <div className='card column'>
+                      <div className='image'>
                         <img
                           src={!artist.thumb ? image : artist.thumb}
                           alt='image not available'
                         />
                       </div>
-                      <div class='content'>
-                        <div class='header'>{artist.title}</div>
-                        <div class='meta'>
+                      <div className='content'>
+                        <div className='header'>{artist.title}</div>
+                        <div className='meta'>
                           <a>{artist.type}</a>
                         </div>
                       </div>
-                      <div class='extra content'>
-                        <span class='right floated'>Joined in 2013</span>
+                      <div className='extra content'>
+                        <span className='right floated'>Joined in 2013</span>
                         <span>
-                          <i class='user icon'></i>
+                          <i className='user icon'></i>
                           75 Friends
                         </span>
                       </div>
