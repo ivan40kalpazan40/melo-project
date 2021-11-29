@@ -23,6 +23,7 @@ const Login = () => {
     try {
       const response = await authServices.login(email, password);
       const user = response.user;
+      localStorage.setItem('user', user);
       setIsAuth(true);
       setData({
         email: '',
@@ -31,6 +32,7 @@ const Login = () => {
       history.push('/');
     } catch (error) {
       console.log(`Login ERR:: ${error.message}`);
+      localStorage.clear();
       setIsAuth(false);
       setAlert(`Login ERR:: ${error.message}`);
       setTimeout(() => {

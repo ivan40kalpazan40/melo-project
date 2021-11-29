@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import * as authServices from './services/authServices';
 
@@ -16,10 +16,20 @@ import Register from './components/Register';
 const App = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
 
+  useEffect(() => {
+  
+    const isUser = localStorage.getItem('user');
+    if (Boolean(isUser)) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  });
   const onLogOut = async () => {
     try {
       await authServices.logout();
       setIsAuth(false);
+      localStorage.clear();
     } catch (error) {
       console.log(error.message);
     }

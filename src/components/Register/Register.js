@@ -31,6 +31,7 @@ const Register = () => {
       .then((user) => {
         console.log(user);
         setIsAuth(true);
+        localStorage.setItem('user', user);
         setData({
           email: '',
           password: '',
@@ -40,6 +41,7 @@ const Register = () => {
       })
       .catch((error) => {
         setIsAuth(false);
+        localStorage.clear();
         setAlert(`Register ERR:: ${error.message}`);
         e.target.reset();
         setTimeout(() => {

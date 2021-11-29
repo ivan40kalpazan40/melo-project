@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/Auth/AuthContext';
 const Home = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
+  
   const image =
     'https://media.istockphoto.com/vectors/cartoon-rock-band-vector-vector-id621592618';
   return (
