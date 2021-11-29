@@ -38,7 +38,10 @@ const Home = () => {
                   return (
                     <div class='card column'>
                       <div class='image'>
-                        <img src={artist.thumb} />
+                        <img
+                          src={!artist.thumb ? image : artist.thumb}
+                          alt='image not available'
+                        />
                       </div>
                       <div class='content'>
                         <div class='header'>{artist.title}</div>
