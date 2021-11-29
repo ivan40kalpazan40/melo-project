@@ -1,119 +1,70 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/Auth/AuthContext';
+import { DataContext } from '../../context/Data/DataContext';
+import * as loadApiServices from '../../services/loadApiServices';
 const Home = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
-  
+  const [data, setData] = useContext(DataContext);
+  useEffect(async () => {
+    if (isAuth) {
+      setData('You dont know that yet!');
+    } else {
+      const response = await loadApiServices.getProducts();
+      console.log(response.results);
+      setData(response.results);
+    }
+  }, [isAuth]);
   const image =
     'https://media.istockphoto.com/vectors/cartoon-rock-band-vector-vector-id621592618';
-  return (
-    <div className='ui container '>
-      <h1 class='ui center aligned header'>
-        melo
-        <div class='sub header'>
-          The social network to keep track of your favorite artists and music
-        </div>
-        <p>{isAuth ? 'Authenticated' : 'Not Autenticated'}</p>
-      </h1>
-      <div class='ui segment'>
-        {/* <div class='ui left dividing rail'>
-            <div class='ui right aligned segment'>
-              <i class='music icon'> </i> Find your artist
-            </div>
-          </div> */}
 
-        <div class='ui three column  stackable padded grid'>
-          <div class='ui link cards'>
-            <div class='card column'>
-              <div class='image'>
-                <img src={image} />
-              </div>
-              <div class='content'>
-                <div class='header'>Matt Giampietro</div>
-                <div class='meta'>
-                  <a>Friends</a>
-                </div>
-                <div class='description'>
-                  Matthew is an interior designer living in New York.
-                </div>
-              </div>
-              <div class='extra content'>
-                <span class='right floated'>Joined in 2013</span>
-                <span>
-                  <i class='user icon'></i>
-                  75 Friends
-                </span>
-              </div>
+  return (
+    <>
+      {isAuth ? (
+        <h2>More Here soon....</h2>
+      ) : (
+        <div className='ui container '>
+          <h1 class='ui center aligned header'>
+            melo
+            <div class='sub header'>
+              The social network to keep track of your favorite artists and
+              music
             </div>
-            <div class='card column'>
-              <div class='image'>
-                <img src={image} />
-              </div>
-              <div class='content'>
-                <div class='header'>Molly</div>
-                <div class='meta'>
-                  <span class='date'>Coworker</span>
-                </div>
-                <div class='description'>
-                  Molly is a personal assistant living in Paris.
-                </div>
-              </div>
-              <div class='extra content'>
-                <span class='right floated'>Joined in 2011</span>
-                <span>
-                  <i class='user icon'></i>
-                  35 Friends
-                </span>
-              </div>
-            </div>
-            <div class='card column'>
-              <div class='image'>
-                <img src={image} />
-              </div>
-              <div class='content'>
-                <div class='header'>Molly</div>
-                <div class='meta'>
-                  <span class='date'>Coworker</span>
-                </div>
-                <div class='description'>
-                  Molly is a personal assistant living in Paris.
-                </div>
-              </div>
-              <div class='extra content'>
-                <span class='right floated'>Joined in 2011</span>
-                <span>
-                  <i class='user icon'></i>
-                  35 Friends
-                </span>
-              </div>
-            </div>
-            <div class='card column'>
-              <div class='image'>
-                <img src={image} />
-              </div>
-              <div class='content'>
-                <div class='header'>Elyse</div>
-                <div class='meta'>
-                  <a>Coworker</a>
-                </div>
-                <div class='description'>
-                  Elyse is a copywriter working in New York.
-                </div>
-              </div>
-              <div class='extra content'>
-                <span class='right floated'>Joined in 2014</span>
-                <span>
-                  <i class='user icon'></i>
-                  151 Friends
-                </span>
+            <p>{isAuth ? 'Authenticated' : 'Not Autenticated'}</p>
+          </h1>
+          <div class='ui segment'>
+            <div class='ui three column  stackable padded grid'>
+              <div class='ui link cards'>
+                {data.map((artist) => {
+                  return (
+                    <div class='card column'>
+                      <div class='image'>
+                        <img src={artist.thumb} />
+                      </div>
+                      <div class='content'>
+                        <div class='header'>{artist.title}</div>
+                        <div class='meta'>
+                          <a>{artist.type}</a>
+                        </div>
+                      </div>
+                      <div class='extra content'>
+                        <span class='right floated'>Joined in 2013</span>
+                        <span>
+                          <i class='user icon'></i>
+                          75 Friends
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+                {/* Column */}
+
+                {/* Column */}
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <button className='ui button primary' onClick={() => setIsAuth(!isAuth)}>
-        Click
-      </button>
-    </div>
+      )}
+    </>
   );
 };
 
