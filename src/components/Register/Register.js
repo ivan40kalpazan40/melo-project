@@ -40,13 +40,13 @@ const Register = () => {
       })
       .catch((error) => {
         setIsAuth(false);
-        setAlert(`ERR:: ${error.message}`);
+        setAlert(`Register ERR:: ${error.message}`);
         e.target.reset();
         setTimeout(() => {
           setAlert('');
         }, 3000);
         //history.push('/user/register');
-        console.log(error.message);
+        console.log(`Register ERR:: ${error.message}`);
       });
   };
 

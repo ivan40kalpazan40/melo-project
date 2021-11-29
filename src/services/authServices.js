@@ -1,4 +1,7 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { auth } from '../config/firebase.config';
 
 export const comparePass = (password, confirmPassword) =>
@@ -13,6 +16,15 @@ export const register = async (email, password, confirmPassword) => {
     const user = await createUserWithEmailAndPassword(auth, email, password);
     return user;
   } catch (error) {
-    throw new Error(error);
+    throw error;
+  }
+};
+
+export const login = async (email, password) => {
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    return result;
+  } catch (error) {
+    throw error;
   }
 };
