@@ -13,7 +13,9 @@ const Navbar = () => {
       <a class='item'>Create</a>
 
       <div class='right menu'>
-        <a class='item'>Logout</a>
+        <Link to='/user/logout' class='item'>
+          Logout
+        </Link>
       </div>
     </div>
   );
