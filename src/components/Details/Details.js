@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as loadApiService from '../../services/loadApiServices';
+import { urlConfig } from '../../config/utils.config';
 
 const Details = () => {
   const image =
@@ -75,84 +76,10 @@ const Details = () => {
                 <div className='column'>Social Media</div>
                 <div className='column'>
                   {artist.urls?.map((url) => {
-                    let weblink = url.includes('facebook') ? (
-                      <>
-                        <i class='facebook f icon'></i>Facebook
-                      </>
-                    ) : url.includes('instagram') ? (
-                      <>
-                        <i class='instagram icon'></i> Instagram
-                      </>
-                    ) : url.includes('soundcloud') ? (
-                      <>
-                        <i class='soundcloud icon '></i> Soundcloud
-                      </>
-                    ) : url.includes('tumblr') ? (
-                      <>
-                        <i class='tumblr icon '></i> Tumblr
-                      </>
-                    ) : url.includes('twitter') ? (
-                      <>
-                        <i class='twitter icon'></i> Twitter
-                      </>
-                    ) : url.includes('vevo') ? (
-                      'Vevo'
-                    ) : url.includes('wikipedia') ? (
-                      <>
-                        <i class='wikipedia w icon'></i> Wikipedia
-                      </>
-                    ) : url.includes('youtube') ? (
-                      <>
-                        <i className='youtube icon'></i>Youtube
-                      </>
-                    ) : url.includes('bandcamp') ? (
-                      <>
-                        <i class='bandcamp icon'></i>Bandcamp
-                      </>
-                    ) : url.includes('spotify') ? (
-                      <>
-                        <i className='spotify icon'></i>Spotify
-                      </>
-                    ) : url.includes('deezer') ? (
-                      'Deezer'
-                    ) : url.includes('myspace') ? (
-                      'Myspace'
-                    ) : url.includes('reverbnation') ? (
-                      'Reverbnation'
-                    ) : url.includes('mixcloud') ? (
-                      <>
-                        <i className='mixcloud icon'></i>Mixcloud
-                      </>
-                    ) : url.includes('audioculture') ? (
-                      'audioculture'
-                    ) : url.includes('last.fm') ? (
-                      <>
-                        <i className='lastfm icon'></i>Last.fm
-                      </>
-                    ) : url.includes('discogs') ? (
-                      'Discogs'
-                    ) : url.includes('flickr') ? (
-                      <>
-                        <i className='flickr icon'></i>Flickr
-                      </>
-                    ) : url.includes('whosampled') ? (
-                      'WhoSampled'
-                    ) : url.includes('lafonoteca') ? (
-                      'lafonoteca'
-                    ) : url.includes('wobblyweb') ? (
-                      'wobbly web'
-                    ) : url.includes('linkedin') ? (
-                      <>
-                        <i className='linkedin icon'></i>LinkedIn
-                      </>
-                    ) : (
-                      'Official website'
-                    );
-
                     return (
                       <p>
                         <a className='ui label black' href={url}>
-                          {weblink}
+                          {urlConfig(url)}
                         </a>
                       </p>
                     );
