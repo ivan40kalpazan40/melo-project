@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import * as loadApiService from '../../services/loadApiServices';
 
 const Details = () => {
@@ -21,7 +21,7 @@ const Details = () => {
         console.log(error.message);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
   return (
     <>
       {loading ? (
@@ -48,7 +48,9 @@ const Details = () => {
                   <div className='column'>
                     {artist.groups.map((group) => (
                       <p className='ui center aligned' key={group.id}>
-                        {group.name}
+                        <Link to={`/artists/${group.id}/details`}>
+                          {group.name}
+                        </Link>
                       </p>
                     ))}
                   </div>
@@ -59,7 +61,9 @@ const Details = () => {
                   <div className='column'>
                     {artist.members.map((member) => (
                       <p className='ui center aligned' key={member.id}>
-                        {member.name}
+                        <Link to={`/artists/${member.id}/details`}>
+                          {member.name}
+                        </Link>
                       </p>
                     ))}
                   </div>
@@ -106,7 +110,9 @@ const Details = () => {
                         <i class='bandcamp icon'></i>Bandcamp
                       </>
                     ) : url.includes('spotify') ? (
-                      'Spotify'
+                      <>
+                        <i className='spotify icon'></i>Spotify
+                      </>
                     ) : url.includes('deezer') ? (
                       'Deezer'
                     ) : url.includes('myspace') ? (
@@ -114,7 +120,9 @@ const Details = () => {
                     ) : url.includes('reverbnation') ? (
                       'Reverbnation'
                     ) : url.includes('mixcloud') ? (
-                      'Mixcloud'
+                      <>
+                        <i className='mixcloud icon'></i>Mixcloud
+                      </>
                     ) : url.includes('audioculture') ? (
                       'audioculture'
                     ) : url.includes('last.fm') ? (
