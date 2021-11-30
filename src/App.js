@@ -12,12 +12,12 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
+import Details from './components/Details';
 
 const App = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
 
   useEffect(() => {
-  
     const isUser = localStorage.getItem('user');
     if (Boolean(isUser)) {
       setIsAuth(true);
@@ -40,6 +40,7 @@ const App = () => {
       <Navbar />
       <Switch>
         <Route exact path='/' component={Home} />
+        <Route path='/artists/:id/details' component={Details} />
         <Route path='/user/login' component={Login} />
         <Route path='/user/register' component={Register} />
         <Route

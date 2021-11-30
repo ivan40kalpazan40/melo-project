@@ -12,3 +12,7 @@ export const getProducts = () => {
     )}`
   ).then((res) => res.json());
 };
+
+export const getArtist = (id) => {
+  return fetch(`${discogsURL}/artists/${id}`).then((res) => res.json());
+};

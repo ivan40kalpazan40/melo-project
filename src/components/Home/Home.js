@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/Auth/AuthContext';
 import { DataContext } from '../../context/Data/DataContext';
 import * as loadApiServices from '../../services/loadApiServices';
@@ -44,7 +45,11 @@ const Home = () => {
                         />
                       </div>
                       <div className='content'>
-                        <div className='header'>{artist.title}</div>
+                        <div className='header'>
+                          <Link to={`/artists/${artist.id}/details`}>
+                            {artist.title}
+                          </Link>
+                        </div>
                         <div className='meta'>
                           <a>{artist.type}</a>
                         </div>
