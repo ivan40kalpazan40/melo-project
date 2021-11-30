@@ -39,3 +39,7 @@ export const logout = async () => {
     throw error;
   }
 };
+
+export const getCurrentUser = () => {
+  return auth.currentUser;
+};

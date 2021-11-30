@@ -23,6 +23,7 @@ const Login = () => {
     try {
       const response = await authServices.login(email, password);
       const user = response.user;
+      // console.log(user);
       localStorage.setItem('user', user);
       setIsAuth(true);
       setData({

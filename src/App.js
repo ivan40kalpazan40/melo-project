@@ -13,6 +13,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
 import Details from './components/Details';
+import Portal from './components/Portal';
 
 const App = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
@@ -41,14 +42,17 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/artists/:id/details' component={Details} />
-        <Route path='/user/login' component={Login} />
-        <Route path='/user/register' component={Register} />
+        <Route exact path='/user/login' component={Login} />
+        <Route exact path='/user/register' component={Register} />
+
         <Route
+          exact
           path='/user/logout'
           render={(props) => {
             return <Logout onLogOut={onLogOut} />;
           }}
         />
+        <Route path='/user/:uid' component={Portal} />
       </Switch>
 
       <Footer />

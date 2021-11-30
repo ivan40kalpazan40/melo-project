@@ -87,8 +87,12 @@ const Details = () => {
                 </div>
               </div>
               <div className='row'>
-                <div className='column'>Add to Wishlist?</div>
-                <div className='column'>Mighty Mighty Bosstones</div>
+                <div className='column'>Add to Favorite Artists?</div>
+                <div className='column'>
+                  <>
+                    <i class='heart icon red'> </i>
+                  </>
+                </div>
               </div>
               <div className='row'>
                 <div className='column'>Add to Have List?</div>

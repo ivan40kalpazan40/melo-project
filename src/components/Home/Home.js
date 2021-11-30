@@ -1,14 +1,19 @@
 import { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { AuthContext } from '../../context/Auth/AuthContext';
 import { DataContext } from '../../context/Data/DataContext';
+import { UserContext } from '../../context/User/UserContext';
 import * as loadApiServices from '../../services/loadApiServices';
+import * as authServices from '../../services/authServices';
 const Home = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
   const [data, setData] = useContext(DataContext);
+  const [currentUser, setCurrentUser] = useContext(UserContext);
   useEffect(async () => {
     if (isAuth) {
-      setData('You dont know that yet!');
+      const user = await authServices.getCurrentUser();
+      await setCurrentUser(user);
+      setData([]);
     } else {
       const response = await loadApiServices.getProducts();
       console.log(response.results);
@@ -21,7 +26,7 @@ const Home = () => {
   return (
     <>
       {isAuth ? (
-        <h2>More Here soon....</h2>
+        <Redirect to={`/user/${currentUser.uid}`} />
       ) : (
         <div className='ui container '>
           <h1 className='ui center aligned header'>
