@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as loadApiService from '../../services/loadApiServices';
-import { urlConfig } from '../../config/utils.config';
+
+import SocialLink from './SocialLink';
 
 const Details = () => {
   const image =
@@ -76,13 +77,7 @@ const Details = () => {
                 <div className='column'>Social Media</div>
                 <div className='column'>
                   {artist.urls?.map((url) => {
-                    return (
-                      <p>
-                        <a className='ui label black' href={url}>
-                          {urlConfig(url)}
-                        </a>
-                      </p>
-                    );
+                    return <SocialLink url={url} key={url} />;
                   })}
                 </div>
               </div>
