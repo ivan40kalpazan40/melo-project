@@ -3,14 +3,23 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/Auth/AuthContext';
 import * as dataServices from '../../services/dataServices';
 import AddArtist from './AddArtist';
+import { UserContext } from '../../context/User/UserContext';
 const SingleCard = ({ artist, image }) => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
+  const [currentUser, setCurrentUser] = useContext(UserContext);
 
-  const addArtistHandler = (e) => {
+  const addArtistHandler = async (e) => {
     console.log(e.target);
     console.log(artist);
     const { id, title, thumb, cover_image, type } = artist;
-    dataServices.addArtist(id, title, thumb, cover_image, type);
+    const asrtistEntry = await dataServices.addArtist(
+      id,
+      title,
+      thumb,
+      cover_image,
+      type, 
+      currentUser.uid
+    );
   };
   return (
     <div className='card column'>

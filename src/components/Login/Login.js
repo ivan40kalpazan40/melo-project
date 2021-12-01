@@ -3,11 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/Auth/AuthContext';
 import { AlertContext } from '../../context/Alert/AlertContext';
 import * as authServices from '../../services/authServices';
+import { UserContext } from '../../context/User/UserContext';
 
 const Login = () => {
   const [data, setData] = useState({ email: '', password: '' });
   const [isAuth, setIsAuth] = useContext(AuthContext);
   const [alert, setAlert] = useContext(AlertContext);
+  const [currentUser, setCurrentUser] = useContext(UserContext);
 
   const history = useHistory();
 
@@ -31,7 +33,7 @@ const Login = () => {
         email: '',
         password: '',
       });
-
+      setCurrentUser(user);
       history.push('/user/profile');
     } catch (error) {
       console.log(`Login ERR:: ${error.message}`);
