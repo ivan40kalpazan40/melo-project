@@ -19,37 +19,36 @@ const Register = () => {
     });
   };
 
-  const submitRegisterForm = (e) => {
+  const submitRegisterForm = async (e) => {
     e.preventDefault();
     const { email, password, confirmPassword } = data;
-    // const formData = new FormData(e.currentTarget);
-    // const email = formData.get('email');
-    // const password = formData.get('password');
-    // const confirmPassword = formData.get('confirmPassword');
-    authServices
-      .register(email, password, confirmPassword)
-      .then((user) => {
-        console.log(user);
-        setIsAuth(true);
-        localStorage.setItem('user', JSON.stringify(user));
-        setData({
-          email: '',
-          password: '',
-          confirmPassword: '',
-        });
-        history.push('/');
-      })
-      .catch((error) => {
-        setIsAuth(false);
-        localStorage.clear();
-        setAlert(`Register ERR:: ${error.message}`);
-        e.target.reset();
-        setTimeout(() => {
-          setAlert('');
-        }, 3000);
-        //history.push('/user/register');
-        console.log(`Register ERR:: ${error.message}`);
+    try {
+      const user = await authServices.register(
+        email,
+        password,
+        confirmPassword
+      );
+      console.log(`REG: `, user);
+      await setIsAuth(true);
+      localStorage.clear();
+      localStorage.setItem('user', JSON.stringify(user));
+      await setData({
+        email: '',
+        password: '',
+        confirmPassword: '',
       });
+      history.push('/user/profile');
+    } catch (error) {
+      setIsAuth(false);
+      localStorage.clear();
+      setAlert(`Register ERR:: ${error.message}`);
+      e.target.reset();
+      setTimeout(() => {
+        setAlert('');
+      }, 3000);
+      //history.push('/user/register');
+      console.log(`Register ERR:: ${error.message}`);
+    }
   };
 
   return (

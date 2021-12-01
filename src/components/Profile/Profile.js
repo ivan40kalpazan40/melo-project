@@ -5,13 +5,12 @@ const Profile = () => {
   const image =
     'https://t4.ftcdn.net/jpg/04/44/81/53/360_F_444815348_7eveLiMXu1EgHLp3OyJcBkeTFHsAGMuB.jpg';
   const [currentUser, setCurrentUser] = useContext(UserContext);
-  useEffect(() => {
-    setCurrentUser(JSON.parse(localStorage.getItem('user')));
-    console.log(currentUser);
+  useEffect(async () => {
+    await setCurrentUser(JSON.parse(localStorage.getItem('user')));
   }, []);
   return (
     <div className='ui container'>
-      <h1>Welcome {currentUser?.email} </h1>
+      <h1>Welcome {currentUser.email} </h1>
       <div className='ui segment'>
         {Boolean(currentUser?.photoURL) ? (
           <>
@@ -29,6 +28,7 @@ const Profile = () => {
         )}
       </div>
       <div className='ui segment'>
+        <h1>General info:</h1>
         <div className='ui two column grid'>
           <div className='row'>
             <div className='ui column right aligned'>Name</div>
@@ -53,7 +53,34 @@ const Profile = () => {
         </div>
       </div>
       <div className='ui segment'>
-        <p>test</p>
+        <h1>Favorite Artists</h1>
+        <div className='ui three column grid'>
+          <div className='row'>
+            <div className='ui column center aligned'>Country</div>
+            <div className='ui column center aligned'>United States</div>
+            <div className='ui column center aligned'>United States</div>
+          </div>
+        </div>
+      </div>
+      <div className='ui segment'>
+        <h1>Favorite Tracks</h1>
+        <div className='ui three column grid'>
+          <div className='row'>
+            <div className='ui column center aligned'>Country</div>
+            <div className='ui column center aligned'>United States</div>
+            <div className='ui column center aligned'>United States</div>
+          </div>
+        </div>
+      </div>
+      <div className='ui segment'>
+        <h1>Favorite Albums</h1>
+        <div className='ui three column grid'>
+          <div className='row'>
+            <div className='ui column center aligned'>Country</div>
+            <div className='ui column center aligned'>United States</div>
+            <div className='ui column center aligned'>United States</div>
+          </div>
+        </div>
       </div>
     </div>
   );

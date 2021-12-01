@@ -2,14 +2,12 @@ import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/Auth/AuthContext';
 import { AlertContext } from '../../context/Alert/AlertContext';
-import { UserContext } from '../../context/User/UserContext';
 import * as authServices from '../../services/authServices';
 
 const Login = () => {
   const [data, setData] = useState({ email: '', password: '' });
   const [isAuth, setIsAuth] = useContext(AuthContext);
   const [alert, setAlert] = useContext(AlertContext);
-  const [currentUser, setCurrentUser] = useContext(UserContext);
 
   const history = useHistory();
 
@@ -26,6 +24,7 @@ const Login = () => {
       const response = await authServices.login(email, password);
       const user = response.user;
       // console.log(user);
+      localStorage.clear();
       localStorage.setItem('user', JSON.stringify(user));
       setIsAuth(true);
       setData({
@@ -33,7 +32,7 @@ const Login = () => {
         password: '',
       });
 
-      history.push('/user/portal');
+      history.push('/user/profile');
     } catch (error) {
       console.log(`Login ERR:: ${error.message}`);
       localStorage.clear();

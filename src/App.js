@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import * as authServices from './services/authServices';
 
 import { AuthContext } from './context/Auth/AuthContext';
+import { UserContext } from './context/User/UserContext';
 
 import './App.css';
 
@@ -17,6 +18,7 @@ import Profile from './components/Profile';
 
 const App = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
+  const [currentUser, setCurrentUser] = useContext(UserContext);
 
   useEffect(() => {
     const isUser = localStorage.getItem('user');
@@ -30,6 +32,7 @@ const App = () => {
     try {
       await authServices.logout();
       setIsAuth(false);
+      setCurrentUser({});
       localStorage.clear();
     } catch (error) {
       console.log(error.message);
