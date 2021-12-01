@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/Auth/AuthContext';
+import AddArtist from './AddArtist';
 const SingleCard = ({ artist, image }) => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
+  const outline = 'outline';
+  const addArtistHandler = (e) => {
+    console.log(e.target);
+  };
   return (
     <div className='card column'>
       <div className='image'>
@@ -22,10 +27,7 @@ const SingleCard = ({ artist, image }) => {
       <div className='extra content'>
         <span className='right floated'>Joined in 2013</span>
         {isAuth ? (
-          <span>
-            <i className='heart icon red outline'></i>
-            Add to favorites
-          </span>
+          <AddArtist addArtistHandler={addArtistHandler} outline={outline} />
         ) : (
           ''
         )}
