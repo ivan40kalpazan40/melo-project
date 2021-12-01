@@ -31,7 +31,7 @@ const Register = () => {
       .then((user) => {
         console.log(user);
         setIsAuth(true);
-        localStorage.setItem('user', user);
+        localStorage.setItem('user', JSON.stringify(user));
         setData({
           email: '',
           password: '',

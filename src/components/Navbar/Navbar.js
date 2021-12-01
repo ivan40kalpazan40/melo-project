@@ -9,7 +9,9 @@ const Navbar = () => {
       <Link to='/' class='item'>
         Home
       </Link>
-      <a class='item'>Profile</a>
+      <Link to='/user/profile' class='item'>
+        Profile
+      </Link>
       <a class='item'>Create</a>
 
       <div class='right menu'>
