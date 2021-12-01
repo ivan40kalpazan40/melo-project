@@ -13,7 +13,8 @@ const Display = () => {
     setData(response.results);
   }, [isAuth]);
   const image =
-    'https://media.istockphoto.com/vectors/cartoon-rock-band-vector-vector-id621592618';
+    'https://png.pngtree.com/element_our/png_detail/20180905/rock-group-music-band-png_82645.jpg';
+
   const [data, setData] = useContext(DataContext);
   return (
     <div className='ui segment'>
