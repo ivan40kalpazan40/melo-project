@@ -12,14 +12,19 @@ const SingleCard = ({ artist, image }) => {
     console.log(e.target);
     console.log(artist);
     const { id, title, thumb, cover_image, type } = artist;
-    const asrtistEntry = await dataServices.addArtist(
-      id,
-      title,
-      thumb,
-      cover_image,
-      type, 
-      currentUser.uid
-    );
+    try {
+      const isArtist = await dataServices.getArtist(currentUser.uid, id);
+    } catch (error) {
+      console.log(error.message);
+      const asrtistEntry = await dataServices.addArtist(
+        id,
+        title,
+        thumb,
+        cover_image,
+        type,
+        currentUser.uid
+      );
+    }
   };
   return (
     <div className='card column'>

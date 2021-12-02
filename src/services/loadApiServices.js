@@ -8,7 +8,7 @@ export const getProducts = () => {
   return fetch(
     `${discogsURL}/database/search?q=${param}&per_page=100${credentials}&page=${goToRandomPage(
       1,
-      100
+      2
     )}`
   ).then((res) => res.json());
 };
