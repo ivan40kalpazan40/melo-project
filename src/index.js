@@ -6,6 +6,7 @@ import { AlertContextProvider } from './context/Alert/AlertContext';
 import { DataContextProvider } from './context/Data/DataContext';
 import { UserContextProvider } from './context/User/UserContext';
 import App from './App';
+import { ArtistContextProvider } from './context/Artist/ArtistContext';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,9 +14,11 @@ ReactDOM.render(
       <AuthContextProvider>
         <DataContextProvider>
           <AlertContextProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
+            <ArtistContextProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </ArtistContextProvider>
           </AlertContextProvider>
         </DataContextProvider>
       </AuthContextProvider>

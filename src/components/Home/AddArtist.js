@@ -1,9 +1,9 @@
 import IconComponent from './IconComponent';
 
-const AddArtist = ({ addArtistHandler }) => {
+const AddArtist = () => {
   return (
     <>
-      <span onClick={addArtistHandler}>
+      <span>
         <IconComponent />
       </span>
       <span>Add to favorites</span>

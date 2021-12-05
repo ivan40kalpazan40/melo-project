@@ -7,6 +7,7 @@ import SingleCard from './SingleCard';
 
 const Display = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
+  const [data, setData] = useContext(DataContext);
   useEffect(async () => {
     const response = await loadApiServices.getProducts();
     console.log(response.results);
@@ -15,7 +16,6 @@ const Display = () => {
   const image =
     'https://png.pngtree.com/element_our/png_detail/20180905/rock-group-music-band-png_82645.jpg';
 
-  const [data, setData] = useContext(DataContext);
   return (
     <div className='ui segment'>
       <div className='ui three column  stackable padded grid'>

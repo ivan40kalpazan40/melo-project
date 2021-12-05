@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as loadApiService from '../../services/loadApiServices';
-
+import { ArtistContext } from '../../context/Artist/ArtistContext';
 import SocialLink from './SocialLink';
 
 const Details = () => {
@@ -10,6 +10,7 @@ const Details = () => {
 
   const [artist, setArtist] = useState({});
   const [loading, setLoading] = useState(true);
+  const [currentArtist, setCurrentArtist] = useContext(ArtistContext);
   const { id } = useParams();
   useEffect(() => {
     loadApiService
@@ -36,7 +37,10 @@ const Details = () => {
           <div className='ui segment'>
             <div className='ui two column grid'>
               <div className='row'>
-                <img class='ui large centered image' src={image} />
+                <img
+                  class='ui large centered image'
+                  src={currentArtist.cover_image}
+                />
               </div>
               <div className='row'>
                 <div className='column'>Bio</div>
