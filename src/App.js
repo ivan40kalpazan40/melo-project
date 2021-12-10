@@ -1,9 +1,8 @@
 import { useContext, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import * as authServices from './services/authServices';
-
-import { AuthContext } from './context/Auth/AuthContext';
 import { UserContext } from './context/User/UserContext';
+import { TOKEN_KEY_NAME } from './config/static.config';
 
 import './App.css';
 
@@ -17,21 +16,12 @@ import Details from './components/Details';
 import Profile from './components/Profile';
 
 const App = () => {
-  const [isAuth, setIsAuth] = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useContext(UserContext);
 
-  useEffect(() => {
-    const isUser = localStorage.getItem('user');
-    if (Boolean(isUser)) {
-      setIsAuth(true);
-    } else {
-      setIsAuth(false);
-    }
-  });
+ 
   const onLogOut = async () => {
     try {
       await authServices.logout();
-      setIsAuth(false);
       setCurrentUser({});
       localStorage.clear();
     } catch (error) {

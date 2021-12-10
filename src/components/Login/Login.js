@@ -1,13 +1,12 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../context/Auth/AuthContext';
+import { AuthContext } from '../../context/Auth/authContext';
 import { AlertContext } from '../../context/Alert/AlertContext';
-import * as authServices from '../../services/authServices';
 import { UserContext } from '../../context/User/UserContext';
 
 const Login = () => {
   const [data, setData] = useState({ email: '', password: '' });
-  const [isAuth, setIsAuth] = useContext(AuthContext);
+  const { user, login, token } = useContext(AuthContext);
   const [alert, setAlert] = useContext(AlertContext);
   const [currentUser, setCurrentUser] = useContext(UserContext);
 
@@ -23,28 +22,13 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = data;
     try {
-      const response = await authServices.login(email, password);
-      const user = response.user;
-      // console.log(user);
-      localStorage.clear();
-      localStorage.setItem('user', JSON.stringify(user));
-      setIsAuth(true);
-      setData({
-        email: '',
-        password: '',
-      });
-      setCurrentUser(user);
-      history.push('/user/profile');
+      await login(email, password);
+      history.push('/');
     } catch (error) {
-      console.log(`Login ERR:: ${error.message}`);
-      localStorage.clear();
-      setIsAuth(false);
-      setAlert(`Login ERR:: ${error.message}`);
-      setTimeout(() => {
-        setAlert('');
-      }, 3000);
-      e.target.reset();
+      console.log(`LOGIN: `, error);
     }
+
+    setData({ email: '', password: '' });
   };
 
   return (
@@ -59,7 +43,7 @@ const Login = () => {
       )}
 
       <h1>Login </h1>
-      <form className='ui form' onSubmit={formSubmitLogin}>
+      <form className='ui form' onSubmit={formSubmitLogin} method='POST'>
         <div className='field'>
           <label>Email</label>
           <input

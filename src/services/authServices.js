@@ -29,7 +29,7 @@ export const login = async (email, password) => {
   } catch (error) {
     throw error;
   }
-};
+};  
 
 export const logout = async () => {
   try {

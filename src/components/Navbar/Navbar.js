@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { AuthContext } from '../../context/Auth/AuthContext';
+import { AuthContext } from '../../context/Auth/authContext';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
-  const [isAuth, setIsAuth] = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
   const loggedNavigation = (
     <div class='ui inverted menu'>
       <div class='header item'>: melo :::</div>
@@ -39,7 +39,7 @@ const Navbar = () => {
     </div>
   );
 
-  return <>{isAuth ? loggedNavigation : guestNavigation}</>;
+  return <>{user ? loggedNavigation : guestNavigation}</>;
 };
 
 export default Navbar;

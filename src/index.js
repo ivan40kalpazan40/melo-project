@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthContextProvider } from './context/Auth/AuthContext';
+// import { AuthContextProvider } from './context/Auth/AuthContext';
+import { AuthState } from './context/Auth/AuthState';
 import { AlertContextProvider } from './context/Alert/AlertContext';
 import { DataContextProvider } from './context/Data/DataContext';
 import { UserContextProvider } from './context/User/UserContext';
@@ -11,7 +12,7 @@ import { ArtistContextProvider } from './context/Artist/ArtistContext';
 ReactDOM.render(
   <React.StrictMode>
     <UserContextProvider>
-      <AuthContextProvider>
+      <AuthState>
         <DataContextProvider>
           <AlertContextProvider>
             <ArtistContextProvider>
@@ -21,7 +22,7 @@ ReactDOM.render(
             </ArtistContextProvider>
           </AlertContextProvider>
         </DataContextProvider>
-      </AuthContextProvider>
+      </AuthState>
     </UserContextProvider>
   </React.StrictMode>,
   document.getElementById('root')

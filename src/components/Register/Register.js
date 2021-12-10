@@ -1,11 +1,11 @@
 import * as authServices from '../../services/authServices';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../context/Auth/AuthContext';
+import { AuthContext } from '../../context/Auth/authContext';
 import { AlertContext } from '../../context/Alert/AlertContext';
 
 const Register = () => {
-  const [isAuth, setIsAuth] = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [alert, setAlert] = useContext(AlertContext);
   const [data, setData] = useState({
     email: '',
@@ -29,7 +29,7 @@ const Register = () => {
         confirmPassword
       );
       console.log(`REG: `, user);
-      await setIsAuth(true);
+      // await setIsAuth(true);
       localStorage.clear();
       localStorage.setItem('user', JSON.stringify(user));
       await setData({
@@ -39,13 +39,13 @@ const Register = () => {
       });
       history.push('/user/profile');
     } catch (error) {
-      setIsAuth(false);
-      localStorage.clear();
-      setAlert(`Register ERR:: ${error.message}`);
-      e.target.reset();
-      setTimeout(() => {
-        setAlert('');
-      }, 3000);
+      // setIsAuth(false);
+      // localStorage.clear();
+      // setAlert(`Register ERR:: ${error.message}`);
+      // e.target.reset();
+      // setTimeout(() => {
+      //   setAlert('');
+      // }, 3000);
       //history.push('/user/register');
       console.log(`Register ERR:: ${error.message}`);
     }

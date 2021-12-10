@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../../context/Auth/AuthContext';
+import { AuthContext } from '../../context/Auth/authContext';
 import { ArtistContext } from '../../context/Artist/ArtistContext';
 import AddArtist from './AddArtist';
 import { UserContext } from '../../context/User/UserContext';
 const SingleCard = ({ artist, image }) => {
-  const [isAuth, setIsAuth] = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useContext(UserContext);
   const [currentArtist, setCurrentArtist] = useContext(ArtistContext);
 
@@ -32,7 +32,7 @@ const SingleCard = ({ artist, image }) => {
       </div>
       <div className='extra content'>
         <span className='right floated'>Joined in 2013</span>
-        {isAuth ? <AddArtist /> : ''}
+        {user ? <AddArtist /> : ''}
       </div>
     </div>
   );
